@@ -1,35 +1,55 @@
-import React from 'react';
-import PropTypes from 'prop-types';
+import React, { Component } from 'react';
 
 import Article from '../Article';
 
+import request from '../../request';
+import { ARTICLES_QUERY } from '../../queries';
+
 import styles from './articleList.css';
 
-const ArticleList = ({ articles }) => (
-  <main className={styles.main}>
-    <header class_name={styles.header}>
-      <h2>Articles List</h2>
-    </header>
-    <section className={styles.articleList}>
-      {articles.map(({ id, author, excerpt }) => (
-        <Article
-          key={id}
-          author={author}
-          excerpt={excerpt}
-        />
-      ))}
-    </section>
-  </main>
-);
+class ArticleList extends Component {
 
-ArticleList.propTypes = {
-  articles: PropTypes.arrayOf(
-    PropTypes.shape({
-      id: PropTypes.string,
-      author: PropTypes.string,
-      excerpt: PropTypes.string,
-    }),
-  ),
-};
+  constructor(props) {
+    super(props);
+    this.state = {
+      loading: true,
+      articles: [],
+    };
+  }
+
+  componentDidMount() {
+    request(ARTICLES_QUERY).then(response => {
+      this.setState({
+        loading: false,
+        articles: response.data.articles,
+      });
+    });
+  }
+
+  render() {
+    const { loading, articles } = this.state;
+    return (
+      <main className={styles.main}>
+        <header className={styles.header}>
+          <h2>Articles List</h2>
+        </header>
+        {loading ? (
+          <p className={styles.loading}>Loading articles...</p>
+        ) : (
+          <section className={styles.articleList}>
+            {articles.map(({ id, author, excerpt }) => (
+              <Article
+                key={id}
+                author={author}
+                excerpt={excerpt}
+              />
+            ))}
+          </section>
+        )}
+      </main>
+    );
+  }
+
+}
 
 export default ArticleList;
