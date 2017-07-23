@@ -1,4 +1,9 @@
 import React, { Component } from 'react';
+
+import Header from './components/Header';
+import Footer from './components/Footer';
+import ArticleList from './components/ArticleList';
+
 import request from './request';
 import { ARTICLES_QUERY } from './queries';
 
@@ -20,11 +25,13 @@ class App extends Component {
 
   // Renders
   render() {
+    const { articles } = this.state;
     return (
-      <div className="App">
-        <h2>Billin code challenge</h2>
-        <pre>{JSON.stringify(this.state.articles, null, 2)}</pre>
-      </div>
+      <main className="App">
+        <Header />
+        <ArticleList articles={articles} />
+        <Footer />
+      </main>
     );
   }
 }
