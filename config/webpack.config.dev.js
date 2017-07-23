@@ -141,7 +141,7 @@ module.exports = {
       // in development "style" loader enables hot editing of CSS.
       {
         test: /\.css$/,
-        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]'
+        loader: 'style!css-loader?modules&importLoaders=1&localIdentName=[name]__[local]___[hash:base64:5]!postcss'
       },
       // JSON is not enabled by default in Webpack but both Node and Browserify
       // allow it implicitly so we also enable it.
@@ -173,6 +173,9 @@ module.exports = {
           'not ie < 9', // React doesn't support IE8 anyway
         ]
       }),
+      require('postcss-import'),
+      require('postcss-cssnext'),
+      require('lost')
     ];
   },
   plugins: [

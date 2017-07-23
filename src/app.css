@@ -1,4 +1,32 @@
-.app {
-  background: #03a9f4;
-  color: #fff;
+@import './shared/css/colors.css';
+@import './shared/css/custom-media.css';
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body, body > div {
+  height: 100%;
+}
+
+body {
+  background: var(--main-color);
+}
+
+@media (--tablet) {
+  body {
+    background: var(--main-color-tablet);
+  }
+}
+@media (--desktop) {
+  body {
+    background: var(--main-color-desktop);
+  }
+}
+@media (--large-desktop) {
+  body {
+    background: var(--main-color-large-desktop);
+  }
 }

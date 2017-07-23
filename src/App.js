@@ -29,11 +29,11 @@ class App extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <main className={styles.app}>
+      <div className={styles.app}>
         <Header />
         <ArticleList articles={articles} />
         <Footer />
-      </main>
+      </div>
     );
   }
 }
