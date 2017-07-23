@@ -1,55 +1,43 @@
-import React, { Component } from 'react';
+import React from 'react';
+import PropTypes from 'prop-types';
 
 import Article from '../Article';
 
-import request from '../../request';
-import { ARTICLES_QUERY } from '../../queries';
-
 import styles from './articleList.css';
 
-class ArticleList extends Component {
+const ArticleList = ({
+  loading,
+  data,
+}) => (
+  <main className={styles.main}>
+    <header className={styles.header}>
+      <h2>Articles List</h2>
+    </header>
+    {loading ? (
+      <p className={styles.loading}>Loading articles...</p>
+    ) : (
+      <section className={styles.articleList}>
+        {data.map(({ id, author, excerpt }) => (
+          <Article
+            key={id}
+            author={author}
+            excerpt={excerpt}
+          />
+        ))}
+      </section>
+    )}
+  </main>
+);
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      loading: true,
-      articles: [],
-    };
-  }
-
-  componentDidMount() {
-    request(ARTICLES_QUERY).then(response => {
-      this.setState({
-        loading: false,
-        articles: response.data.articles,
-      });
-    });
-  }
-
-  render() {
-    const { loading, articles } = this.state;
-    return (
-      <main className={styles.main}>
-        <header className={styles.header}>
-          <h2>Articles List</h2>
-        </header>
-        {loading ? (
-          <p className={styles.loading}>Loading articles...</p>
-        ) : (
-          <section className={styles.articleList}>
-            {articles.map(({ id, author, excerpt }) => (
-              <Article
-                key={id}
-                author={author}
-                excerpt={excerpt}
-              />
-            ))}
-          </section>
-        )}
-      </main>
-    );
-  }
-
-}
+ArticleList.propTypes = {
+  data: PropTypes.arrayOf(
+    PropTypes.shape({
+      id: PropTypes.string,
+      author: PropTypes.string,
+      excerpt: PropTypes.string,
+    }),
+  ),
+  loading: PropTypes.bool,
+};
 
 export default ArticleList;
