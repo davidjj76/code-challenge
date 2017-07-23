@@ -7,6 +7,8 @@ import ArticleList from './components/ArticleList';
 import request from './request';
 import { ARTICLES_QUERY } from './queries';
 
+import styles from './app.css';
+
 class App extends Component {
   // definition
   constructor(props) {
@@ -27,7 +29,7 @@ class App extends Component {
   render() {
     const { articles } = this.state;
     return (
-      <main className="App">
+      <main className={styles.app}>
         <Header />
         <ArticleList articles={articles} />
         <Footer />
