@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 
 import Article from './models';
 
+mongoose.Promise = global.Promise;
 mongoose.connect('mongodb://localhost/billin');
 mongoose.set('debug', true);
 
