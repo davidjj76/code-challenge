@@ -1,7 +1,7 @@
-import Article from './article';
-import Articles from './articles';
+import article from './article';
+import articles from './articles';
 
 export default {
-  Article,
-  Articles,
+  article,
+  articles,
 };

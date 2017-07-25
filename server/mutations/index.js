@@ -1,9 +1,9 @@
-import CreateArticle from './createArticle';
-import UpdateArticle from './updateArticle';
-import DeleteArticle from './deleteArticle';
+import createArticle from './createArticle';
+import updateArticle from './updateArticle';
+import deleteArticle from './deleteArticle';
 
 export default {
-  CreateArticle,
-  UpdateArticle,
-  DeleteArticle,
+  createArticle,
+  updateArticle,
+  deleteArticle,
 };
