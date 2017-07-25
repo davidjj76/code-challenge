@@ -3,6 +3,5 @@ export const ARTICLES_QUERY = `{
     author
     excerpt
     id
-    title
   }
 }`;
