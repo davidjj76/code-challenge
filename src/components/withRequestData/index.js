@@ -2,7 +2,14 @@ import React, { Component } from 'react';
 
 import request from '../../request';
 
-const withRequestData = (WrappedComponent, dataQuery, selectData) => (
+import styles from './withRequestData.css';
+
+const withRequestData = (WrappedComponent, {
+  dataQuery,
+  selectData,
+  title,
+  loadingText,
+}) => (
   class extends Component {
 
     constructor(props) {
@@ -25,11 +32,20 @@ const withRequestData = (WrappedComponent, dataQuery, selectData) => (
     render() {
       const { data, loading } = this.state;
       return (
-        <WrappedComponent
-          data={data}
-          loading={loading}
-          {...this.props}
-        />);
+        <main className={styles.main}>
+          <header className={styles.header}>
+            <h2>{title}</h2>
+          </header>
+          {loading ? (
+            <p className={styles.loading}>{loadingText}</p>
+          ) : (
+            <WrappedComponent
+              data={data}
+              {...this.props}
+            />
+          )}
+        </main>
+      );
     }
 
   }

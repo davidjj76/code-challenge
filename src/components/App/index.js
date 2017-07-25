@@ -14,15 +14,21 @@ import {
 import styles from './app.css';
 
 const ArticleListWithRequestData = withRequestData(
-  ArticleList,
-  ARTICLES_QUERY,
-  response => response.data.articles,
+  ArticleList, {
+    dataQuery: ARTICLES_QUERY,
+    selectData: response => response.data.articles,
+    title: 'Article List',
+    loadingText: 'Loading articles list...',
+  },
 );
 
 const ArticleDetailWithRequestData = withRequestData(
-  ArticleDetail,
-  ARTICLE_QUERY({ id: '5977b54e06f609287440df01' }),
-  response => response.data.article,
+  ArticleDetail, {
+    dataQuery: ARTICLE_QUERY({ id: '5977b54e06f609287440df01' }),
+    selectData: response => response.data.article,
+    title: 'Article detail',
+    loadingText: 'Loading article detail...',
+  },
 );
 
 const App = () => (
