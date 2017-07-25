@@ -8,7 +8,7 @@ const withRequestData = (WrappedComponent, dataQuery, selectData) => (
     constructor(props) {
       super(props);
       this.state = {
-        data: [],
+        data: null,
         loading: true,
       };
     }
