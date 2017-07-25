@@ -2,17 +2,10 @@ import _ from 'lodash';
 import Faker from 'faker';
 import mongoose from 'mongoose';
 
+import Article from './models';
+
 mongoose.connect('mongodb://localhost/billin');
 mongoose.set('debug', true);
-
-const Article = mongoose.model('Article', {
-  author: String,
-  content: String,
-  excerpt: String,
-  published: Boolean,
-  tags: [String],
-  title: String,
-});
 
 Article.remove({}, (err) => {
   if (!err) {
@@ -35,5 +28,3 @@ ${Faker.lorem.paragraphs()}
     });
   }
 });
-
-export default { Article };
