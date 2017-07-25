@@ -16,7 +16,7 @@ const ArticleList = ({
     {loading ? (
       <p className={styles.loading}>Loading articles...</p>
     ) : (
-      <section className={styles.articleList}>
+      <section className={styles.list}>
         {data.map(({ id, author, excerpt }) => (
           <Article
             key={id}

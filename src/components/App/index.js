@@ -1,11 +1,11 @@
 import React from 'react';
 
-import Header from './components/Header';
-import Footer from './components/Footer';
-import withRequestData from './components/withRequestData';
-import ArticleList from './components/ArticleList';
+import Header from '../Header';
+import Footer from '../Footer';
+import withRequestData from '../withRequestData';
+import ArticleList from '../ArticleList';
 
-import { ARTICLES_QUERY } from './queries';
+import { ARTICLES_QUERY } from '../../queries';
 
 import styles from './app.css';
 

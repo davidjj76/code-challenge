@@ -1,0 +1,20 @@
+@import '../../shared/css/custom-media.css';
+
+.app {
+  font-size: 1.2em;
+}
+
+@media (--tablet) {
+  .app {
+    font-size: 1.15em;
+  }
+}
+@media (--desktop) {
+  .app {
+    font-size: 1em;
+  }
+}
+@media (--large-desktop) {
+  .app {
+  }
+}
