@@ -44,7 +44,6 @@ const withRequestData = (WrappedComponent, {
 
     render() {
       const { data, err, loading } = this.state;
-
       return (
         <main className={styles.main}>
           <header className={styles.header}>
