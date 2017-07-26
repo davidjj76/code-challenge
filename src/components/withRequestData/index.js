@@ -21,7 +21,9 @@ const withRequestData = (WrappedComponent, {
     }
 
     componentDidMount() {
-      request(dataQuery).then(response => {
+      // eslint-disable-next-line react/prop-types
+      const { match } = this.props;
+      request(dataQuery(match.params)).then(response => {
         this.setState({
           data: selectData(response),
           loading: false,
@@ -47,7 +49,6 @@ const withRequestData = (WrappedComponent, {
         </main>
       );
     }
-
   }
 );
 

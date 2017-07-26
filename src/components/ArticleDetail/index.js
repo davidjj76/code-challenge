@@ -1,5 +1,6 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Link } from 'react-router-dom';
 
 import styles from './articleDetail.css';
 
@@ -14,6 +15,7 @@ const ArticleDetail = ({
     <p className={styles.text}>{data.content}</p>
     <p className={styles.text}>{data.published}</p>
     <p className={styles.text}>{data.tags.join(',')}</p>
+    <Link to="/">Back</Link>
   </section>
 );
 

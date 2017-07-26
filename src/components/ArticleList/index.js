@@ -5,10 +5,7 @@ import Article from '../Article';
 
 import styles from './articleList.css';
 
-const ArticleList = ({
-  data,
-  onArticleClick,
-}) => (
+const ArticleList = ({ data }) => (
   <section className={styles.list}>
     {data.map(({ id, author, excerpt }) => (
       <Article
@@ -16,7 +13,6 @@ const ArticleList = ({
         id={id}
         author={author}
         excerpt={excerpt}
-        onClick={onArticleClick}
       />
     ))}
   </section>
@@ -30,7 +26,6 @@ ArticleList.propTypes = {
       excerpt: PropTypes.string,
     }),
   ).isRequired,
-  onArticleClick: PropTypes.func.isRequired,
 };
 
 export default ArticleList;
