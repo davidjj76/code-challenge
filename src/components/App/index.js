@@ -1,11 +1,12 @@
 import React from 'react';
-import { Route } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 
 import Header from '../Header';
 import Footer from '../Footer';
 import withRequestData from '../withRequestData';
 import ArticleList from '../ArticleList';
 import ArticleDetail from '../ArticleDetail';
+import NotFound from '../NotFound';
 
 import {
   ARTICLES_QUERY,
@@ -35,8 +36,11 @@ const ArticleDetailWithRequestData = withRequestData(
 const App = () => (
   <div className={styles.app}>
     <Header />
-    <Route exact path="/" component={ArticleListWithRequestData} />
-    <Route path="/:id" component={ArticleDetailWithRequestData} />
+    <Switch>
+      <Route exact path="/" component={ArticleListWithRequestData} />
+      <Route exact path="/:id" component={ArticleDetailWithRequestData} />
+      <Route render={() => <NotFound text="404 - Not Found" />} />
+    </Switch>
     <Footer />
   </div>
 );
