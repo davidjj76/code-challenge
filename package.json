@@ -41,6 +41,7 @@
     "lost": "^8.2.0",
     "object-assign": "4.1.1",
     "postcss-cssnext": "^3.0.2",
+    "postcss-font-magician": "^2.0.0",
     "postcss-import": "^10.0.0",
     "postcss-loader": "1.2.2",
     "promise": "7.1.1",

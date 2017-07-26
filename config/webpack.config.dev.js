@@ -1,6 +1,7 @@
 'use strict';
 
 var autoprefixer = require('autoprefixer');
+var fontMagician = require('postcss-font-magician');
 var webpack = require('webpack');
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 var CaseSensitivePathsPlugin = require('case-sensitive-paths-webpack-plugin');
@@ -175,7 +176,10 @@ module.exports = {
       }),
       require('postcss-import'),
       require('postcss-cssnext'),
-      require('lost')
+      require('lost'),
+      fontMagician({
+        foundries: ['google']
+      })
     ];
   },
   plugins: [
