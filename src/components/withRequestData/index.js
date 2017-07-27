@@ -1,4 +1,7 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+
+import { requestData } from '../../actions';
 
 import Loading from '../Loading';
 import NotFound from '../NotFound';
@@ -26,19 +29,22 @@ const withRequestData = (WrappedComponent, {
 
     componentDidMount() {
       // eslint-disable-next-line react/prop-types
-      const { match } = this.props;
+      const { match, dispatch } = this.props;
+      dispatch(requestData(true));
       request(dataQuery(match.params))
         .then(response => {
           this.setState({
             data: selectData(response),
             loading: false,
           });
+          dispatch(requestData(false));
         })
         .catch(err => {
           this.setState({
             err,
             loading: false,
           });
+          dispatch(requestData(false));
         });
     }
 
@@ -55,6 +61,22 @@ const withRequestData = (WrappedComponent, {
         </main>
       );
     }
+
+    const mapStateToProps = state => {
+      const { isLoading } = state;
+      const { isLoading } = { isLoading: false }
+    }
+    connect(mapStateToProps)(WrappedComponent);
+
+  return {
+    selectedReddit,
+    posts,
+    isFetching,
+    lastUpdated
+  }
+}
+
+
   }
 );
 
