@@ -33,6 +33,11 @@
   text-align: justify;
 }
 
+.text::selection {
+  background: var(--accent-color);
+  color: #fff;
+}
+
 .tags {
   color: var(--secondary-color);
   font-size: 1.1em;
