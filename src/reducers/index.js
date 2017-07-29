@@ -5,20 +5,7 @@ import {
   ERR_RECEIVE_DATA,
 } from '../actions';
 
-export default (state = {
-  isFetching: false,
-  err: null,
-  data: {
-    articles: [],
-    article: {
-      author: '',
-      content: '',
-      published: false,
-      tags: [],
-      title: '',
-    },
-  },
-}, action) => {
+export default (state, action) => {
   switch (action.type) {
     case REQUEST_DATA:
       return {

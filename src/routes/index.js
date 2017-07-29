@@ -1,9 +1,9 @@
 import React from 'react';
 
-import withRequestData from './withRequestData';
-import ArticleList from './ArticleList';
-import ArticleDetail from './ArticleDetail';
-import NotFound from './NotFound';
+import withRequestData from '../components/withRequestData';
+import ArticleList from '../components/ArticleList';
+import ArticleDetail from '../components/ArticleDetail';
+import NotFound from '../components/NotFound';
 
 import {
   fetchArticlesIfNeeded,
@@ -24,7 +24,6 @@ export default [{
   exact: true,
   component: withRequestData(ArticleDetail, {
     fetchAction: fetchArticleIfNeeded,
-    fetchParams: params => params.id,
     fieldData: 'article',
     title: 'Article detail',
     loadingText: 'Loading article detail...',

@@ -9,7 +9,6 @@ import styles from './withRequestData.css';
 
 const withRequestData = (WrappedComponent, {
   fetchAction,
-  fetchParams,
   fieldData,
   title,
   loadingText,
@@ -26,10 +25,7 @@ const withRequestData = (WrappedComponent, {
 
     componentDidMount() {
       const { match, dispatch } = this.props;
-      const params = typeof fetchParams === 'function'
-        ? fetchParams(match.params)
-        : null;
-      dispatch(fetchAction(params));
+      dispatch(fetchAction(match.params));
     }
 
     render() {

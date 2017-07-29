@@ -3,7 +3,7 @@ import { Switch, Route } from 'react-router-dom';
 
 import Header from '../Header';
 import Footer from '../Footer';
-import routes from '../routes';
+import routes from '../../routes';
 
 import styles from './app.css';
 

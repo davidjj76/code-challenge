@@ -1,9 +1,9 @@
-import request from '../request';
+import request from './request';
 
 import {
   ARTICLES_QUERY,
   ARTICLE_QUERY,
-} from '../queries';
+} from './queries';
 
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
@@ -71,7 +71,7 @@ const fetchArticle = id => dispatch => (
   ))
 );
 
-export const fetchArticleIfNeeded = id => (dispatch, getState) => {
+export const fetchArticleIfNeeded = ({ id }) => (dispatch, getState) => {
   const articleToFetch = getState().data.articles.find(article => article.id === id);
   if (!articleToFetch) {
     return dispatch(fetchArticle(id));
