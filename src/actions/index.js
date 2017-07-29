@@ -6,26 +6,26 @@ import {
 } from './queries';
 
 export const REQUEST_DATA = 'REQUEST_DATA';
-export const RECEIVE_ARTICLES = 'RECEIVE_ARTICLES';
-export const RECEIVE_ARTICLE = 'RECEIVE_ARTICLE';
-export const ERR_RECEIVE_DATA = 'ERR_RECEIVE_DATA';
+export const SET_ARTICLES = 'SET_ARTICLES';
+export const SET_ARTICLE = 'SET_ARTICLE';
+export const ERR_REQUEST_DATA = 'ERR_REQUEST_DATA';
 
 const requestData = () => ({
   type: REQUEST_DATA,
 });
 
-const receiveArticles = articles => ({
-  type: RECEIVE_ARTICLES,
+const setArticles = articles => ({
+  type: SET_ARTICLES,
   articles,
 });
 
-const receiveArticle = article => ({
-  type: RECEIVE_ARTICLE,
+const setArticle = article => ({
+  type: SET_ARTICLE,
   article,
 });
 
-const errReceiveData = err => ({
-  type: ERR_RECEIVE_DATA,
+const errRequestData = err => ({
+  type: ERR_REQUEST_DATA,
   err,
 });
 
@@ -34,12 +34,12 @@ const fetchData = (dataQuery, receiveAction) => dispatch => {
   return request(dataQuery)
     .then(response => {
       if (response.errors) {
-        dispatch(errReceiveData('Data not found!!!'));
+        dispatch(errRequestData('Data not found!!!'));
       } else {
         dispatch(receiveAction(response));
       }
     })
-    .catch(err => dispatch(errReceiveData(err)));
+    .catch(err => dispatch(errRequestData(err)));
 };
 
 const shouldFetchArticles = state => {
@@ -53,7 +53,7 @@ const shouldFetchArticles = state => {
 const fetchArticles = () => dispatch => (
   dispatch(fetchData(
     ARTICLES_QUERY(),
-    response => receiveArticles(response.data.articles),
+    response => setArticles(response.data.articles),
   ))
 );
 
@@ -67,7 +67,7 @@ export const fetchArticlesIfNeeded = () => (dispatch, getState) => {
 const fetchArticle = id => dispatch => (
   dispatch(fetchData(
     ARTICLE_QUERY(id),
-    response => receiveArticle(response.data.article),
+    response => setArticle(response.data.article),
   ))
 );
 
@@ -76,5 +76,5 @@ export const fetchArticleIfNeeded = ({ id }) => (dispatch, getState) => {
   if (!articleToFetch) {
     return dispatch(fetchArticle(id));
   }
-  return dispatch(receiveArticle(articleToFetch));
+  return dispatch(setArticle(articleToFetch));
 };
