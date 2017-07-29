@@ -1,6 +1,8 @@
 @import '../../shared/css/custom-media.css';
+@import '../../shared/css/fonts.css';
 
 .app {
+  font-family: 'Cabin';
   font-size: 1.2em;
 }
 
@@ -17,4 +19,9 @@
 @media (--large-desktop) {
   .app {
   }
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Roboto Condensed';
+  font-weight: 400;
 }
