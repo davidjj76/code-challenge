@@ -29,6 +29,19 @@ const errReceiveData = err => ({
   err,
 });
 
+const fetchData = (dataQuery, receiveAction) => dispatch => {
+  dispatch(requestData());
+  return request(dataQuery)
+    .then(response => {
+      if (response.errors) {
+        dispatch(errReceiveData('Data not found!!!'));
+      } else {
+        dispatch(receiveAction(response));
+      }
+    })
+    .catch(err => dispatch(errReceiveData(err)));
+};
+
 const shouldFetchArticles = state => {
   const articles = state.data.articles;
   if (!articles.length) {
@@ -37,18 +50,12 @@ const shouldFetchArticles = state => {
   return false;
 };
 
-const fetchArticles = () => dispatch => {
-  dispatch(requestData());
-  return request(ARTICLES_QUERY())
-    .then(response => {
-      if (response.errors) {
-        dispatch(errReceiveData('Data not found!!!'));
-      } else {
-        dispatch(receiveArticles(response.data.articles));
-      }
-    })
-    .catch(err => dispatch(errReceiveData(err)));
-};
+const fetchArticles = () => dispatch => (
+  dispatch(fetchData(
+    ARTICLES_QUERY(),
+    response => receiveArticles(response.data.articles),
+  ))
+);
 
 export const fetchArticlesIfNeeded = () => (dispatch, getState) => {
   if (shouldFetchArticles(getState())) {
@@ -57,18 +64,12 @@ export const fetchArticlesIfNeeded = () => (dispatch, getState) => {
   return false;
 };
 
-const fetchArticle = id => dispatch => {
-  dispatch(requestData());
-  return request(ARTICLE_QUERY(id))
-    .then(response => {
-      if (response.errors) {
-        dispatch(errReceiveData('Data not found!!!'));
-      } else {
-        dispatch(receiveArticle(response.data.article));
-      }
-    })
-    .catch(err => dispatch(errReceiveData(err)));
-};
+const fetchArticle = id => dispatch => (
+  dispatch(fetchData(
+    ARTICLE_QUERY(id),
+    response => receiveArticle(response.data.article),
+  ))
+);
 
 export const fetchArticleIfNeeded = id => (dispatch, getState) => {
   const articleToFetch = getState().data.articles.find(article => article.id === id);
