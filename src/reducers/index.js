@@ -1,10 +1,12 @@
 import {
   REQUEST_DATA,
   RECEIVE_DATA,
+  ERR_RECEIVE_DATA,
 } from '../actions';
 
 export default (state = {
   isFetching: false,
+  err: null,
   data: {
     articles: [],
     article: {
@@ -15,21 +17,29 @@ export default (state = {
       title: '',
     },
   },
-}, { type, isFetching, fieldData, data }) => {
+}, { type, err, fieldData, data }) => {
   switch (type) {
     case REQUEST_DATA:
       return {
         ...state,
-        isFetching,
+        isFetching: true,
+        err: null,
       };
     case RECEIVE_DATA:
       return {
         ...state,
-        isFetching,
+        isFetching: false,
         data: {
           ...state.data,
           [fieldData]: data,
         },
+        err: null,
+      };
+    case ERR_RECEIVE_DATA:
+      return {
+        ...state,
+        isFetching: false,
+        err,
       };
     default:
       return state;

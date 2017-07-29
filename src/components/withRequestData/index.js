@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 import { fetchData } from '../../actions';
 import Loading from '../Loading';
-// import NotFound from '../NotFound';
+import NotFound from '../NotFound';
 
 import styles from './withRequestData.css';
 
@@ -19,28 +19,26 @@ const withRequestData = (WrappedComponent, {
     static propTypes = {
       data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
       dispatch: PropTypes.func.isRequired,
+      err: PropTypes.string, // eslint-disable-line react/forbid-prop-types
       isFetching: PropTypes.bool.isRequired,
       match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
     };
 
     componentDidMount() {
-      console.log('didmount');
       const { match, dispatch } = this.props;
       dispatch(fetchData(dataQuery(match.params), fieldData));
     }
 
     render() {
-      console.log('render', this.props);
-      const { data, isFetching, ...rest } = this.props;
+      const { data, err, isFetching, ...rest } = this.props;
       return (
         <main className={styles.main}>
           <header className={styles.header}>
             <h2>{title}</h2>
           </header>
-          {isFetching
-            ? <Loading text={loadingText} />
-            : <WrappedComponent data={data[fieldData]} {...rest} />
-          }
+          {isFetching && <Loading text={loadingText} />}
+          {!isFetching && err && <NotFound text={err} />}
+          {!isFetching && !err && <WrappedComponent data={data[fieldData]} {...rest} />}
         </main>
       );
     }
@@ -50,11 +48,13 @@ const withRequestData = (WrappedComponent, {
   const mapStateToProps = state => {
     const {
       isFetching,
+      err,
       data,
     } = state;
 
     return {
       isFetching,
+      err,
       data,
     };
   };
