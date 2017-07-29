@@ -1,8 +1,10 @@
 import React from 'react';
 
+import styles from './header.css';
+
 const Header = () => (
-  <header>
-    <h1>Billin code challenge</h1>
+  <header className={styles.header}>
+    <h1 className={styles.title}>Billin code challenge</h1>
   </header>
 );
 

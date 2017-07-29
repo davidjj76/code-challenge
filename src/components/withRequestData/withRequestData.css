@@ -1,0 +1,34 @@
+@import '../../shared/css/layout';
+@import '../../shared/css/colors';
+
+.main {
+  margin-top: var(--header-height);
+  min-height: 80vh;
+}
+
+.header {
+  padding: 1em;
+  height: var(--header-height);
+  background: var(--secondary-color);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  position: relative;
+  color: #fff;
+  padding: .4em;
+}
+
+.title::after {
+  content: '';
+  position: absolute;
+  background: var(--accent-color);
+  width: 30px;
+  height: 3px;
+  bottom: 0;
+  left: .4em;
+}
+

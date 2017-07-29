@@ -6,11 +6,17 @@
   padding: 0;
 }
 
-html, body, body > div {
+html, body > div {
   height: 100%;
 }
 
 body {
   font-size: 16px;
   background: var(--background-color);
+  overflow-x: hidden;
+}
+
+a {
+  text-decoration: none;
+  color: var(--text-color);
 }

@@ -7,7 +7,7 @@ import styles from './notFound.css';
 const NotFound = ({ text }) => (
   <section className={styles.notFound}>
     <p className={styles.text}>{text}</p>
-    <Link to="/">Home</Link>
+    <Link className={styles.backHome} to="/">Back Home</Link>
   </section>
 );
 

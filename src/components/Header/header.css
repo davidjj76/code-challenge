@@ -1,0 +1,20 @@
+@import '../../shared/css/custom-media.css';
+@import '../../shared/css/colors.css';
+@import '../../shared/css/layout.css';
+
+.header {
+  position: fixed;
+  top: 0;
+  height: var(--header-height);
+  background: var(--background-color);
+  width: 100%;
+  color: var(--primary-color);
+  box-shadow: 0 2px 10px #ccc;
+  z-index: 1;
+}
+
+.title {
+  line-height: var(--header-height);
+  margin-left: 1em;
+  font-size: 1.5em;
+}

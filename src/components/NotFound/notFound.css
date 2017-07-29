@@ -1,0 +1,37 @@
+@import '../../shared/css/custom-media.css';
+@import '../../shared/css/colors.css';
+@import '../../shared/css/layout.css';
+
+.notFound {
+  height: calc(100vh - var(--header-height) * 2);
+  display: flex;
+  flex-direction: column;  
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 1.5em;
+  color: var(--primary-color);
+}
+
+.backHome {
+  font-size: 1em;
+  margin-top: 2em;
+  padding: .8em;
+  min-width: 200px;
+  text-align: center;
+  background: var(--accent-color);
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.backHome:hover {
+  background: color(var(--accent-color) blackness(25%));
+}
+
+@media (--tablet) {
+  .notFound {
+    height: calc(100vh - calc(var(--header-height) * 2) - 120px);
+  }
+}

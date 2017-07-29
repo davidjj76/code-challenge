@@ -1,0 +1,21 @@
+@import '../../shared/css/custom-media.css';
+@import '../../shared/css/colors.css';
+@import '../../shared/css/layout.css';
+
+.loading {
+  height: calc(100vh - var(--header-height) * 2);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.text {
+  font-size: 1.5em;
+  color: var(--primary-color);
+}
+
+@media (--tablet) {
+  .loading {
+    height: calc(100vh - calc(var(--header-height) * 2) - 120px);
+  }
+}

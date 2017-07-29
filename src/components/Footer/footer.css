@@ -1,0 +1,77 @@
+@import '../../shared/css/custom-media.css';
+@import '../../shared/css/colors.css';
+@import '../../shared/css/layout.css';
+
+.footer {
+  background: var(--primary-color);
+  width: 100vw;
+  height: calc(100vh - var(--header-height));
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 30% 10%;
+  color: #fff;
+  text-align: center;
+}
+
+.header {
+}
+
+.photo {
+  border-radius: 50%;
+  border: 5px solid #fff;
+  width: 120px;
+  height: 120px;
+}
+
+.name {
+  margin-top: 2em;
+}
+
+.links {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+
+.link {
+  color: #fff;
+}
+
+@media (--tablet) {
+  .footer {
+    height: 120px;
+    padding: 2em;
+    flex-direction: row;
+    justify-content: flex-start;
+  }
+
+  .profile {
+    margin-left: 2em;
+  }
+
+  .photo {
+    width: 60px;
+    height: 60px;
+  }
+
+  .name {
+    margin-top: 0;
+  }
+
+  .links {
+    flex-grow: 1;
+    justify-content: flex-end;
+  }
+
+  .link {
+    margin-left: 1em;
+  }
+
+}
+@media (--desktop) {
+}
+
+@media (--large-desktop) {
+}

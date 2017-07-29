@@ -5,7 +5,7 @@
 
 .list {
   max-width: 90%;
-  margin: 0 auto;
+  margin: 2% auto;
   lost-utility: clearfix;
   lost-flex-container: row;
   justify-content: center;

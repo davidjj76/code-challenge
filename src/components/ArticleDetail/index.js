@@ -15,7 +15,7 @@ const ArticleDetail = ({
     <p className={styles.text}>{data.content}</p>
     <p className={styles.text}>{data.published}</p>
     <p className={styles.text}>{data.tags.join(',')}</p>
-    <Link to="/">Home</Link>
+    <Link className={styles.backHome} to="/">Back Home</Link>
   </section>
 );
 
