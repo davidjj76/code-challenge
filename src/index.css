@@ -20,3 +20,19 @@ a {
   text-decoration: none;
   color: var(--text-color);
 }
+
+.backHome {
+  display: inline-block;
+  font-size: 1em;
+  margin-top: 2em;
+  padding: .8em;
+  min-width: 200px;
+  text-align: center;
+  background: var(--accent-color);
+  color: #fff;
+  text-transform: uppercase;
+}
+
+.backHome:hover {
+  background: color(var(--accent-color) blackness(25%));
+}

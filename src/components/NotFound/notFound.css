@@ -16,18 +16,7 @@
 }
 
 .backHome {
-  font-size: 1em;
-  margin-top: 2em;
-  padding: .8em;
-  min-width: 200px;
-  text-align: center;
-  background: var(--accent-color);
-  color: #fff;
-  text-transform: uppercase;
-}
-
-.backHome:hover {
-  background: color(var(--accent-color) blackness(25%));
+  composes: backHome from "../../index.css";
 }
 
 @media (--tablet) {

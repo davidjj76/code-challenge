@@ -6,35 +6,81 @@
   min-height: calc(100vh - var(--header-height) * 2);
   max-width: 90%;
   margin: 2% auto;
+  color: var(--text-color);
 }
 
 .header {
-
+  text-align: center;
+  padding: 1em 0;
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .title {
+  color: var(--secondary-color);
+  font-size: 1.4em;
+}
 
+.subtitle {
+  display: inline-block;
+  color: color(var(--text-color) lightness(80%));
+  font-size: 1em;
+  margin-top: 1em;
+}
+
+.text {
+  padding: 1em 0;
+  line-height: 200%;
+  text-align: justify;
+}
+
+.tags {
+  color: var(--secondary-color);
+  font-size: 1.1em;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  align-items: center;
+}
+
+.tags span:first-of-type {
+  margin-right: 1em;
+}
+
+.tag {
+  display: inline-block;
+  margin: .5em;
+  padding: .5em 1em;
+  border: 3px solid var(--secondary-color);
+  border-radius: 2em;
+}
+
+.tag:hover {
+  background: var(--secondary-color);
+  color: #fff;
+  cursor: default;
 }
 
 .backHome {
-  font-size: 1em;
-  margin-top: 2em;
-  padding: .8em;
-  min-width: 200px;
-  text-align: center;
-  background: var(--accent-color);
-  color: #fff;
-  text-transform: uppercase;
+  composes: backHome from "../../index.css";
+  margin: 2em auto;
+  position: relative;
+  left: 50%;
+  transform: translateX(-50%);
 }
-
-.backHome:hover {
-  background: color(var(--accent-color) blackness(25%));
-}
-
 
 @media (--tablet) {
   .detail {
     min-height: calc(100vh - calc(var(--header-height) * 2) - 120px);
   }
+
+  .header {
+    text-align: left;
+  }
+
+  .text {
+    font-size: 1.2em;
+    text-align: left;
+  }
+
 }
 
