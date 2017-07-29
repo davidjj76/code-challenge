@@ -4,6 +4,24 @@ import { Link } from 'react-router-dom';
 
 import styles from './articleDetail.css';
 
+const Published = ({ published }) => {
+  const classes = [styles.published];
+  if (published) {
+    classes.push(styles.alreadyPublished);
+  } else {
+    classes.push(styles.notPublished);
+  }
+  return (
+    <p className={classes.join(' ')}>
+      {published ? 'Published' : 'Not published'}
+    </p>
+  );
+};
+
+Published.propTypes = {
+  published: PropTypes.bool.isRequired,
+};
+
 const Tags = ({ tags }) => (
   <div className={styles.tags}>
     <span>Tagged with: </span>
@@ -29,6 +47,7 @@ const ArticleDetail = ({
       <h3 className={styles.title}>{data.author}</h3>
       <span className={styles.subtitle}>{data.title}</span>
     </header>
+    <Published published={data.published} />
     <p className={styles.text}>{data.content}</p>
     <Tags tags={data.tags} />
     <Link className={styles.backHome} to="/">Back Home</Link>

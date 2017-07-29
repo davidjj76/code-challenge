@@ -27,6 +27,19 @@
   margin-top: 1em;
 }
 
+.published {
+  text-align: right;
+  margin-top: 1em;  
+}
+
+.alreadyPublished {
+  color: var(--secondary-color);
+}
+
+.notPublished {
+  color: var(--accent-color);
+}
+
 .text {
   padding: 1em 0;
   line-height: 200%;
