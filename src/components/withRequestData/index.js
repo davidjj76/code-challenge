@@ -2,14 +2,14 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { fetchData } from '../../actions';
 import Loading from '../Loading';
 import NotFound from '../NotFound';
 
 import styles from './withRequestData.css';
 
 const withRequestData = (WrappedComponent, {
-  dataQuery,
+  fetchAction,
+  fetchParams,
   fieldData,
   title,
   loadingText,
@@ -26,7 +26,10 @@ const withRequestData = (WrappedComponent, {
 
     componentDidMount() {
       const { match, dispatch } = this.props;
-      dispatch(fetchData(dataQuery(match.params), fieldData));
+      const params = typeof fetchParams === 'function'
+        ? fetchParams(match.params)
+        : null;
+      dispatch(fetchAction(params));
     }
 
     render() {

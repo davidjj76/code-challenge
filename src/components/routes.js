@@ -6,15 +6,15 @@ import ArticleDetail from './ArticleDetail';
 import NotFound from './NotFound';
 
 import {
-  ARTICLES_QUERY,
-  ARTICLE_QUERY,
-} from '../queries';
+  fetchArticlesIfNeeded,
+  fetchArticleIfNeeded,
+} from '../actions';
 
 export default [{
   path: '/',
   exact: true,
   component: withRequestData(ArticleList, {
-    dataQuery: ARTICLES_QUERY,
+    fetchAction: fetchArticlesIfNeeded,
     fieldData: 'articles',
     title: 'Article List',
     loadingText: 'Loading articles list...',
@@ -23,7 +23,8 @@ export default [{
   path: '/:id',
   exact: true,
   component: withRequestData(ArticleDetail, {
-    dataQuery: ARTICLE_QUERY,
+    fetchAction: fetchArticleIfNeeded,
+    fetchParams: params => params.id,
     fieldData: 'article',
     title: 'Article detail',
     loadingText: 'Loading article detail...',
