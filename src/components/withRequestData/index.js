@@ -1,83 +1,65 @@
 import React, { Component } from 'react';
+import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 
-import { requestData } from '../../actions';
-
+import { fetchData } from '../../actions';
 import Loading from '../Loading';
-import NotFound from '../NotFound';
-
-import request from '../../request';
+// import NotFound from '../NotFound';
 
 import styles from './withRequestData.css';
 
 const withRequestData = (WrappedComponent, {
   dataQuery,
-  selectData,
+  fieldData,
   title,
   loadingText,
-}) => (
-  class extends Component {
+}) => {
+  class WrapperComponent extends Component {
 
-    constructor(props) {
-      super(props);
-      this.state = {
-        data: null,
-        err: null,
-        loading: true,
-      };
-    }
+    static propTypes = {
+      data: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+      dispatch: PropTypes.func.isRequired,
+      isFetching: PropTypes.bool.isRequired,
+      match: PropTypes.object.isRequired, // eslint-disable-line react/forbid-prop-types
+    };
 
     componentDidMount() {
-      // eslint-disable-next-line react/prop-types
+      console.log('didmount');
       const { match, dispatch } = this.props;
-      dispatch(requestData(true));
-      request(dataQuery(match.params))
-        .then(response => {
-          this.setState({
-            data: selectData(response),
-            loading: false,
-          });
-          dispatch(requestData(false));
-        })
-        .catch(err => {
-          this.setState({
-            err,
-            loading: false,
-          });
-          dispatch(requestData(false));
-        });
+      dispatch(fetchData(dataQuery(match.params), fieldData));
     }
 
     render() {
-      const { data, err, loading } = this.state;
+      console.log('render', this.props);
+      const { data, isFetching, ...rest } = this.props;
       return (
         <main className={styles.main}>
           <header className={styles.header}>
             <h2>{title}</h2>
           </header>
-          {loading && <Loading text={loadingText} />}
-          {err && <NotFound text={err.toString()} />}
-          {!err && !loading && <WrappedComponent data={data} {...this.props} />}
+          {isFetching
+            ? <Loading text={loadingText} />
+            : <WrappedComponent data={data[fieldData]} {...rest} />
+          }
         </main>
       );
     }
 
-    const mapStateToProps = state => {
-      const { isLoading } = state;
-      const { isLoading } = { isLoading: false }
-    }
-    connect(mapStateToProps)(WrappedComponent);
-
-  return {
-    selectedReddit,
-    posts,
-    isFetching,
-    lastUpdated
   }
-}
 
+  const mapStateToProps = state => {
+    const {
+      isFetching,
+      data,
+    } = state;
 
-  }
-);
+    return {
+      isFetching,
+      data,
+    };
+  };
+
+  return connect(mapStateToProps)(WrapperComponent);
+};
 
 export default withRequestData;

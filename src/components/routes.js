@@ -15,7 +15,7 @@ export default [{
   exact: true,
   component: withRequestData(ArticleList, {
     dataQuery: ARTICLES_QUERY,
-    selectData: response => response.data.articles,
+    fieldData: 'articles',
     title: 'Article List',
     loadingText: 'Loading articles list...',
   }),
@@ -24,7 +24,7 @@ export default [{
   exact: true,
   component: withRequestData(ArticleDetail, {
     dataQuery: ARTICLE_QUERY,
-    selectData: response => response.data.article,
+    fieldData: 'article',
     title: 'Article detail',
     loadingText: 'Loading article detail...',
   }),

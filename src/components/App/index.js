@@ -11,8 +11,8 @@ const App = () => (
   <div className={styles.app}>
     <Header />
     <Switch>
-      {routes.map(route => (
-        <Route {...route} />
+      {routes.map((route, index) => (
+        <Route {...route} key={index.toString()} />
       ))}
     </Switch>
     <Footer />

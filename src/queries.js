@@ -1,8 +1,12 @@
 export const ARTICLES_QUERY = () => (`{
   articles {
     author
-    excerpt
     id
+    content
+    excerpt
+    published
+    tags
+    title
   }
 }`);
 
