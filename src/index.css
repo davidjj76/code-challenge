@@ -21,7 +21,7 @@ a {
   color: var(--text-color);
 }
 
-.backHome {
+.accentButton {
   display: inline-block;
   font-size: 1em;
   margin-top: 2em;
@@ -33,6 +33,6 @@ a {
   text-transform: uppercase;
 }
 
-.backHome:hover {
+.accentButton:hover {
   background: color(var(--accent-color) blackness(25%));
 }

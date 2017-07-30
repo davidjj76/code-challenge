@@ -16,7 +16,7 @@
 }
 
 .backHome {
-  composes: backHome from "../../index.css";
+  composes: accentButton from "../../index.css";
 }
 
 @media (--tablet) {

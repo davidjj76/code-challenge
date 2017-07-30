@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import Pencil from 'react-icons/lib/fa/pencil';
 
 import Loading from '../Loading';
 import NotFound from '../NotFound';
@@ -34,6 +35,10 @@ const withRequestData = (WrappedComponent, {
         <main className={styles.main}>
           <header className={styles.header}>
             <h2 className={styles.title}>{title}</h2>
+            <button className={styles.newArticle}>
+              <Pencil className={styles.icon} size={30} />
+              <span className={styles.buttonText}>write your article</span>
+            </button>
           </header>
           {isFetching && <Loading text={loadingText} />}
           {!isFetching && err && <NotFound text={err} />}

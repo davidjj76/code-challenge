@@ -1,5 +1,6 @@
 @import '../../shared/css/layout';
 @import '../../shared/css/colors';
+@import '../../shared/css/custom-media';
 
 .main {
   margin-top: var(--header-height);
@@ -30,5 +31,27 @@
   height: 3px;
   bottom: 0;
   left: .4em;
+}
+
+.newArticle {
+  composes: accentButton from "../../index.css";
+  cursor: pointer;
+  margin: 0;
+  border: none;
+  outline: none;
+  font-family: inherit;
+  font-size: .8em;
+  min-width: 0;
+}
+
+.buttonText {
+  margin-left: 1em;
+  display: none;
+}
+
+@media (--tablet) {
+  .buttonText {
+    display: inline-block;
+  }
 }
 
