@@ -6,7 +6,7 @@ import {
 } from 'graphql';
 
 import Article from '../models';
-import articleType from '../types';
+import articleType from '../types/article';
 
 export default {
   description: 'Updates an article by id',
@@ -26,11 +26,9 @@ export default {
     },
     published: {
       type: GraphQLBoolean,
-      defaultValue: true,
     },
     tags: {
       type: new GraphQLList(GraphQLString),
-      defaultValue: [],
     },
     title: {
       type: GraphQLString,

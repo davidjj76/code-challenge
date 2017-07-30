@@ -4,7 +4,7 @@ import {
 } from 'graphql';
 
 import Article from '../models';
-import articleType from '../types';
+import articleType from '../types/article';
 
 export default {
   description: 'Gets an article by id',

@@ -1,39 +1,24 @@
 import {
-  GraphQLString,
-  GraphQLBoolean,
-  GraphQLList,
   GraphQLNonNull,
 } from 'graphql';
 
 import Article from '../models';
-import articleType from '../types';
+import articleType from '../types/article';
+import articleInputType from '../types/articleInput';
 
 export default {
   description: 'Creates a new article',
   type: articleType,
   args: {
-    author: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    content: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    excerpt: {
-      type: new GraphQLNonNull(GraphQLString),
-    },
-    published: {
-      type: GraphQLBoolean,
-      defaultValue: true,
-    },
-    tags: {
-      type: new GraphQLList(GraphQLString),
-      defaultValue: [],
-    },
-    title: {
-      type: new GraphQLNonNull(GraphQLString),
+    newArticle: {
+      type: new GraphQLNonNull(articleInputType),
     },
   },
-  resolve(root, { author, content, excerpt, published, tags, title }) {
-    return Article.create({ author, content, excerpt, published, tags, title });
+  resolve(root, params) {
+    const newArticle = {
+      ...params.newArticle,
+      excerpt: params.newArticle.content.slice(0, 350),
+    };
+    return Article.create(newArticle);
   },
 };

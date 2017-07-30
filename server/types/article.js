@@ -7,7 +7,7 @@ import {
 
 export default new GraphQLObjectType({
   name: 'Article',
-  description: 'This represents a Article',
+  description: 'This represents an Article',
   fields: () => ({
     author: {
       type: GraphQLString,
