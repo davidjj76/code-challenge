@@ -5,6 +5,10 @@ import {
   ARTICLE_QUERY,
 } from './queries';
 
+import {
+  CREATE_ARTICLE_MUTATION,
+} from './mutations';
+
 export const REQUEST_DATA = 'REQUEST_DATA';
 export const SET_ARTICLES = 'SET_ARTICLES';
 export const SET_ARTICLE = 'SET_ARTICLE';
@@ -77,4 +81,15 @@ export const fetchArticleIfNeeded = params => (dispatch, getState) => {
     return dispatch(fetchArticle(params));
   }
   return dispatch(setArticle(articleToFetch));
+};
+
+export const createArticle = newArticle => (dispatch, getState) => {
+  const articles = getState().data.articles;
+  dispatch(fetchData(
+    CREATE_ARTICLE_MUTATION(newArticle),
+    response => setArticles([
+      ...articles,
+      response.data.createArticle,
+    ]),
+  ));
 };
