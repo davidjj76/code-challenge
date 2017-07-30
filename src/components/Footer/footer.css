@@ -31,12 +31,19 @@
 
 .links {
   display: flex;
-  justify-content: space-around;
+  justify-content: center;
   width: 100%;
 }
 
 .link {
   color: #fff;
+  margin: 0 1em;
+  opacity: .3;
+  transition: opacity .25s;
+}
+
+.link:hover {
+  opacity: 1;
 }
 
 @media (--tablet) {
@@ -67,6 +74,7 @@
 
   .link {
     margin-left: 1em;
+    cursor: pointer;
   }
 
 }
