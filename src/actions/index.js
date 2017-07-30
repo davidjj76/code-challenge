@@ -64,17 +64,17 @@ export const fetchArticlesIfNeeded = () => (dispatch, getState) => {
   return false;
 };
 
-const fetchArticle = id => dispatch => (
+const fetchArticle = params => dispatch => (
   dispatch(fetchData(
-    ARTICLE_QUERY(id),
+    ARTICLE_QUERY(params),
     response => setArticle(response.data.article),
   ))
 );
 
-export const fetchArticleIfNeeded = ({ id }) => (dispatch, getState) => {
-  const articleToFetch = getState().data.articles.find(article => article.id === id);
+export const fetchArticleIfNeeded = params => (dispatch, getState) => {
+  const articleToFetch = getState().data.articles.find(article => article.id === params.id);
   if (!articleToFetch) {
-    return dispatch(fetchArticle(id));
+    return dispatch(fetchArticle(params));
   }
   return dispatch(setArticle(articleToFetch));
 };
