@@ -35,9 +35,15 @@ const withRequestData = (WrappedComponent, {
           <header className={styles.header}>
             <h2 className={styles.title}>{title}</h2>
           </header>
-          {isFetching && <Loading text={loadingText} />}
-          {!isFetching && err && <NotFound text={err} />}
-          {!isFetching && !err && <WrappedComponent data={data[fieldData]} {...rest} />}
+          {(() => {
+            if (isFetching) {
+              return <Loading text={loadingText} />;
+            }
+            if (err) {
+              return <NotFound text={err} />;
+            }
+            return <WrappedComponent data={data[fieldData]} {...rest} />;
+          })()}
         </main>
       );
     }
