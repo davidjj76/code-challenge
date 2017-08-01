@@ -1,19 +1,19 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import { Link } from 'react-router-dom';
+import classNames from 'classnames';
 
 import styles from './articleDetail.css';
 
 const ArticleDetail = ({ data }) => {
   const publishedRenderer = published => {
-    const classes = [styles.published];
-    if (published) {
-      classes.push(styles.alreadyPublished);
-    } else {
-      classes.push(styles.notPublished);
-    }
+    const publishedClasses = classNames({
+      [styles.published]: true,
+      [styles.alreadyPublished]: published,
+      [styles.notPublished]: !published,
+    });
     return (
-      <p className={classes.join(' ')}>
+      <p className={publishedClasses}>
         {published ? 'Published' : 'Not published'}
       </p>
     );
