@@ -35,6 +35,7 @@ const errRequestData = err => ({
 
 const fetchData = (dataQuery, receiveAction) => dispatch => {
   dispatch(requestData());
+  console.log(dataQuery);
   return request(dataQuery)
     .then(response => {
       if (response.errors) {
